@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "antd/dist/antd.css";
+import Spinner from "./components/common/Spinner";
+import Password from "./components/common/Password";
+import TodoContainer from "./components/todo/TodoContainer";
+import { loadLock } from "./utils/LockService";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  //@TODO login
+  const [isLocked, setIsLocked] = useState(false);
+
+  useEffect(() => {
+    const _todos = localStorage.getItem("todos");
+    const _lock = loadLock();
+    if (_todos === null) {
+      localStorage.setItem("todos", JSON.stringify([]));
+    }
+    if (_lock) {
+      setIsLocked(_lock.isLock);
+    }
+  }, []);
+
+  const RenderLayout = (
+    <div>
+      <TodoContainer setIsLocked={setIsLocked} />
     </div>
   );
+
+  const LoadingLayout = (
+    <div>
+      <Spinner mask />
+      <Password setIsLocked={setIsLocked} />
+    </div>
+  );
+
+  return isLocked ? LoadingLayout : RenderLayout;
 }
 
 export default App;
