@@ -1,16 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { UnlockOutlined } from "@ant-design/icons";
-import PasswordModal from "../common/PasswordModal";
-
-const Lock = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #119955;
-  font-size: 20px;
-  margin-top: 30px;
-`;
 
 const TodoHeadBlock = styled.div`
   display: flex;
@@ -32,12 +21,7 @@ const DayText = styled.div`
   padding-top: 5px;
 `;
 
-interface TodoHeadProps {
-  setIsLocked: (props: any) => void;
-}
-
-const TodoHead = ({ setIsLocked }: TodoHeadProps) => {
-  //@TODO 현재 시간을 표시해야합니다.
+const TodoHead = () => {
   const now = new Date();
   const dayString = now.toLocaleDateString("en-US", {
     weekday: "long",
@@ -47,26 +31,9 @@ const TodoHead = ({ setIsLocked }: TodoHeadProps) => {
     month: "long",
     day: "numeric",
   });
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleClick = () => {
-    showModal();
-  };
 
   return (
     <>
-      <Lock>
-        <UnlockOutlined onClick={handleClick} />
-        <PasswordModal
-          isModalVisible={isModalVisible}
-          setIsModalVisible={setIsModalVisible}
-          setIsLocked={setIsLocked}
-        />
-      </Lock>
       <TodoHeadBlock>
         <DayText>{dayString}</DayText>
         <DateText>{dateString}</DateText>

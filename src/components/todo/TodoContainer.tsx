@@ -5,18 +5,14 @@ import TodoList from "./TodoList";
 import TodoCreate from "./TodoCreate";
 import TodoFooter from "./TodoFooter";
 
-interface TodoContainerProps {
-  setIsLocked: (props: any) => void;
-}
-
-const TodoContainer = ({ setIsLocked }: TodoContainerProps) => {
+const TodoContainer = () => {
   const { todos, nextId, incrementNextId, toggleTodo, removeTodo, createTodo } =
     useTodo();
 
   return (
     <>
       <TodoTemplate>
-        <TodoHead setIsLocked={setIsLocked} />
+        <TodoHead />
         <TodoCreate
           nextId={nextId}
           createTodo={createTodo}
