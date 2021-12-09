@@ -14,6 +14,7 @@ export type ITodo = {
 
 interface LoadTodosSuccessed {
   type: typeof LOAD_TODOS_SUCCESSED;
+  payload: ITodo[];
 }
 
 interface LoadTodosFailed {
@@ -28,4 +29,8 @@ interface RemoveTodo {
   type: typeof REMOVE_TODO;
 }
 
-export type TodoDispatchTypes = LoadTodosSuccessed | LoadTodosFailed;
+export type TodoDispatchTypes =
+  | LoadTodosSuccessed
+  | LoadTodosFailed
+  | AddTodo
+  | RemoveTodo;
