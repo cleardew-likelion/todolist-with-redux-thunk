@@ -7,11 +7,12 @@ import {
 import { ITodo, TodoDispatchTypes } from "./types";
 
 interface IDefaultState {
-  todos: ITodo[];
+  isLoading: boolean;
+  todos?: ITodo[];
 }
 
 const defaultState: IDefaultState = {
-  todos: [],
+  isLoading: true,
 };
 
 const todoReducer = (
@@ -26,6 +27,8 @@ const todoReducer = (
     case ADD_TODO:
       return state;
     case REMOVE_TODO:
+      return state;
+    default:
       return state;
   }
 };
