@@ -8,11 +8,12 @@ import { ITodo, TodoDispatchTypes } from "./types";
 
 interface IDefaultState {
   isLoading: boolean;
-  todos?: ITodo[];
+  todos: ITodo[] | [];
 }
 
 const defaultState: IDefaultState = {
   isLoading: true,
+  todos: [],
 };
 
 const todoReducer = (
