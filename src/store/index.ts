@@ -5,7 +5,7 @@ import todoReducer from "./todo/reducer";
 
 export const RootReducer = combineReducers({ todo: todoReducer });
 
-const store = createStore(RootReducer, applyMiddleware(thunk));
+const store = createStore(todoReducer, applyMiddleware(thunk));
 
 export type RootStore = ReturnType<typeof RootReducer>;
 

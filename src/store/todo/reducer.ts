@@ -1,10 +1,19 @@
+import { createReducer } from "typesafe-actions";
 import {
   LOAD_TODOS_SUCCESSED,
   LOAD_TODOS_FAILED,
   ADD_TODO,
   REMOVE_TODO,
+  fetchTodos,
 } from "./actions";
 import { ITodo, TodoDispatchTypes } from "./types";
+
+createReducer;
+
+export const todoList = createReducer([]).handleAction(
+  fetchTodos.success,
+  (state, action) => action.payload
+);
 
 interface IDefaultState {
   isLoading: boolean;

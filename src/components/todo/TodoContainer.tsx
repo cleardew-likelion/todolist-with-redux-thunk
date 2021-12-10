@@ -7,6 +7,9 @@ import TodoFooter from "./TodoFooter";
 import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "../../store";
 import { ITodo } from "../../store/todo/types";
+import { fetchTodos } from "../../store/todo/actions";
+import { useEffect } from "react";
+import { fetchTodosThunk } from "../../store/todo/thunks";
 
 const TodoContainer = () => {
   const { nextId, incrementNextId, toggleTodo, removeTodo, createTodo } =
@@ -14,7 +17,14 @@ const TodoContainer = () => {
 
   const dispatch = useDispatch();
   const todoState = useSelector((state) => state);
-  const { isLoading, todos } = todoState;
+
+  useEffect(() => {
+    dispatch(fetchTodosThunk());
+  }, [dispatch]);
+
+  console.log("#", todoState);
+
+  const todos: any[] = [];
 
   return (
     <>
